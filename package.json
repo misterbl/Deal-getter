@@ -1,0 +1,19 @@
+{
+  "name": "graphql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "author": "Laurent bouhnik",
+  "license": "ISC",
+  "scripts": {
+    "start": "nodemon ./server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "puppeteer": "^1.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
