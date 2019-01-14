@@ -1,15 +1,12 @@
 const puppeteer = require("puppeteer");
 
-const captureAllDeals = async elements => {
-  let i = 1;
-  for (const element of elements) {
-    await element.screenshot({ path: `public/deals/${i}.png` });
-    i += 1;
-  }
+const captureDeal = async (deal, index) => {
+  await deal.screenshot({ path: `public/deals/${index}.png` });
 };
-const getDeals = async () => {
+
+const getDeal = async index => {
   console.log(
-    "\nPlease hold on while we are getting the deals.\nIt's only going to take a minute or two....\n"
+    "\nPlease hold on while we are getting the deal.\nIt's only going to take a minute...\n"
   );
   const browser = await puppeteer.launch({ headless: true });
   try {
@@ -19,18 +16,14 @@ const getDeals = async () => {
       waitUntil: "networkidle0"
     });
     await page.waitForSelector(".ebayui-dne-item-featured-card");
-    await page.screenshot({
-      path: "public/deals/allDeals.png",
-      fullPage: true
-    });
     const deals = await page.$$("div.dne-itemtile-medium");
-    await captureAllDeals(deals, page);
-    console.log("deals are ready!");
+    const deal = deals[index - 1];
+    await captureDeal(deal, index, page);
+    console.log("the deal has been found!");
     await browser.close();
   } catch (err) {
     console.error(err);
     browser.close();
   }
 };
-
-module.exports = getDeals;
+module.exports = getDeal;
