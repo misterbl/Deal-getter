@@ -1,6 +1,6 @@
-var express = require("express");
-var getDeal = require("./getDeal.js");
-var app = express();
+const express = require("express");
+const getDeal = require("./getDeal.js");
+const app = express();
 
 app.use(
   express.static("public", {
@@ -16,14 +16,14 @@ app.get("/", function(req, res) {
 });
 
 app.get("/deals/:id", async function(req, res) {
-  var id = req.params.id;
+  const id = req.params.id;
   await getDeal(id);
   res.redirect(`/deals/${id}`);
 });
 
-var server = app.listen(3000, function() {
-  var host = server.address().address;
-  var port = server.address().port;
+const server = app.listen(3000, function() {
+  const host = server.address().address;
+  const port = server.address().port;
 
   console.log("Example app listening at http://%s:%s", host, port);
 });
