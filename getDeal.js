@@ -13,7 +13,7 @@ const getDeal = async index => {
     const page = await browser.newPage();
     await page.setViewport({ width: 1200, height: 1200 });
     await page.goto("https://www.ebay.co.uk/deals", {
-      waitUntil: "networkidle0"
+      waitUntil: "networkidle0" // Should be changed to 'domcontentloaded'
     });
     await page.waitForSelector(".ebayui-dne-item-featured-card");
     const deals = await page.$$("div.dne-itemtile-medium");
